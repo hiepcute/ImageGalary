@@ -8,9 +8,15 @@
 import Foundation
 import UIKit
 
-class ImageService {
+protocol ImageServiceProtocol {
+    func fetchRandomImage(useCache: Bool) async throws -> UIImage
+    func resetCache()
+}
+
+class ImageService: ImageServiceProtocol{
     static let shared = ImageService()
     private var cache = NSCache<NSString, UIImage>()
+    private var services = NetworkService(session: URLSession.shared)
     
     private init() {
         cache.countLimit = 200 // Cache up to 200 images
@@ -20,37 +26,31 @@ class ImageService {
         cache = NSCache<NSString, UIImage>()
     }
     
-    func fetchRandomImage(completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func fetchRandomImage(useCache: Bool = true) async throws -> UIImage {
         let imageSize = 200
-        let urlString = "https://picsum.photos/\(imageSize)/\(imageSize)"
+        let urlString = APIEndPoint.makeImageURL(imageSize: imageSize)
         
         guard let url = URL(string: urlString) else {
-            completion(.failure(NetworkError.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
         
         // Check cache first
         let cacheKey = NSString(string: url.absoluteString + "\(Int.random(in: 1...10000) )")
-        if let cachedImage = cache.object(forKey: cacheKey) {
-            completion(.success(cachedImage))
-            return
+        if useCache {
+            if let cachedImage = cache.object(forKey: cacheKey) {
+                return cachedImage
+            }
         }
         
-        URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data, let image = UIImage(data: data) else {
-                completion(.failure(NetworkError.invalidData))
-                return
-            }
-            
-            // Cache the image
-            self?.cache.setObject(image, forKey: cacheKey)
-            completion(.success(image))
-            
-        }.resume()
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        guard let image = UIImage(data: data) else {
+            throw NetworkError.invalidData
+        }
+        
+        // Cache the image
+        cache.setObject(image, forKey: cacheKey)
+        
+        return image
     }
 }

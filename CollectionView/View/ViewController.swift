@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class ViewController: UIViewController {
     
@@ -14,17 +15,17 @@ class ViewController: UIViewController {
     private let itemsPerPage = 70 // 7x10
     private let columnsPerRow = 7
     private let rowsPerPage = 10
-    
+    private var viewModel = ImageViewModel()
+    private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+        setupNavBar()
         setupCollectionView()
-        loadInitialImages()
-        // Do any additional setup after loading the view.
+        bindViewModel()
     }
     
-    private func setupUI() {
+    private func setupNavBar() {
         view.backgroundColor = .systemBackground
         title = "Image Gallery"
         
@@ -48,9 +49,18 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItems = [addButton]
     }
     
+    private func bindViewModel() {
+        viewModel.$images
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.collectionView.reloadData()
+            }
+            .store(in: &cancellables)
+    }
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 2
         layout.minimumLineSpacing = 2
         
@@ -64,9 +74,12 @@ class ViewController: UIViewController {
         
         // Register cell
         collectionView.register(ImageCollectionViewCell.self, forCellWithReuseIdentifier: "ImageCell")
-        
-        view.addSubview(collectionView)
-        
+            view.addSubview(collectionView)
+        setupConstraint()
+      
+    }
+    
+    private func setupConstraint() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -80,108 +93,43 @@ class ViewController: UIViewController {
     }
     
     @objc private func reloadAllButtonTapped() {
-        reloadAllImages()
-    }
-    
-    private func loadInitialImages() {
-        for _ in 0..<70 {
-            let imageModel = ImageModel()
-            images.append(imageModel)
-        }
-        collectionView.reloadData()
-        
-        // Start loading images
-        loadImagesForVisibleCells()
-    }
-    
-    
-    private func addNewImage() {
-        let newImage = ImageModel()
-        images.append(newImage)
-        
-        let indexPath = IndexPath(item: images.count - 1, section: 0)
-        collectionView.insertItems(at: [indexPath])
-        
-        // Load the new image
-        loadImage(for: newImage, at: indexPath)
-    }
-    private func reloadAllImages() {
-        // Clear existing images
-        images.removeAll()
-        collectionView.reloadData()
-        ImageService.shared.resetCache()
-        
-        // Add 140 new images
-        for _ in 0..<140 {
-            let imageModel = ImageModel()
-            images.append(imageModel)
-        }
-        
-        collectionView.reloadData()
-        
-        // Scroll to first page
+        viewModel.reloadAllImages()
         collectionView.setContentOffset(.zero, animated: true)
-        
-        // Load images for visible cells
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {[weak self] in
-            self?.loadImagesForVisibleCells()
-        }
     }
+    
+
+    private func addNewImage() {
+        viewModel.addNewImage()
+        let indexPath = IndexPath(item: viewModel.images.count - 1, section: 0)
+        collectionView.insertItems(at: [indexPath])
+        viewModel.loadImage(for: indexPath)
+    }
+    
     
     private func loadImagesForVisibleCells() {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in visibleIndexPaths {
-            let imageModel = images[indexPath.item]
-            loadImage(for: imageModel, at: indexPath)
-        }
-    }
-    
-    private func loadImage(for imageModel: ImageModel, at indexPath: IndexPath) {
-        guard !imageModel.isLoading && imageModel.image == nil else { return }
-        
-        imageModel.isLoading = true
-        print("index path \(indexPath)")
-        // Update cell to show loading state
-        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
-            cell.showLoading()
-        }
-    
-        ImageService.shared.fetchRandomImage { [weak self] result in
-            DispatchQueue.main.async {
-                imageModel.isLoading = false
-                switch result {
-                case .success(let image):
-                    imageModel.image = image
-                case .failure:
-                    imageModel.image = UIImage(systemName: "photo")
-                }
-                
-                if let cell = self?.collectionView.cellForItem(at: indexPath) as? ImageCollectionViewCell {
-                    cell.configure(with: imageModel)
-                }
-            }
+            viewModel.loadImage(for: indexPath)
         }
     }
     
 }
 
-
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
+        return viewModel.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCollectionViewCell
-        let imageModel = images[indexPath.item]
+        let imageModel = viewModel.images[indexPath.item]
         cell.configure(with: imageModel)
         
-        // Load image if not already loaded
-        if imageModel.image == nil && !imageModel.isLoading {
-            loadImage(for: imageModel, at: indexPath)
-        }
-        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        viewModel.willDisplayItem(at: indexPath)
     }
 }
 

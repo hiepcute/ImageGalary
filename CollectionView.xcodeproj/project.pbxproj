@@ -16,6 +16,9 @@
 		FA13D9412E6AD6A200198251 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9402E6AD6A200198251 /* ImageCollectionViewCell.swift */; };
 		FA13D9452E6AD73100198251 /* ImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9442E6AD73100198251 /* ImageServices.swift */; };
 		FA13D9492E6AD77500198251 /* NetworkErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9482E6AD77500198251 /* NetworkErrorHandler.swift */; };
+		FA13D94D2E6BE55A00198251 /* Networkservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D94C2E6BE55A00198251 /* Networkservices.swift */; };
+		FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D94F2E6BEB2100198251 /* APIConstant.swift */; };
+		FA13D9532E6BED2E00198251 /* CollectionViewGallaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		FA13D9402E6AD6A200198251 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		FA13D9442E6AD73100198251 /* ImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServices.swift; sourceTree = "<group>"; };
 		FA13D9482E6AD77500198251 /* NetworkErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorHandler.swift; sourceTree = "<group>"; };
+		FA13D94C2E6BE55A00198251 /* Networkservices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkservices.swift; sourceTree = "<group>"; };
+		FA13D94F2E6BEB2100198251 /* APIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstant.swift; sourceTree = "<group>"; };
+		FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewGallaryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 		FA13D9262E6AD4C000198251 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				FA13D9512E6BED1500198251 /* ViewModel */,
 				FA13D94A2E6AD78D00198251 /* View */,
 				FA13D9462E6AD75200198251 /* Ultils */,
 				FA13D9422E6AD6CC00198251 /* Core */,
@@ -95,6 +102,7 @@
 		FA13D9422E6AD6CC00198251 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FA13D94B2E6BE54600198251 /* Network */,
 				FA13D9432E6AD6D200198251 /* Services */,
 			);
 			path = Core;
@@ -111,6 +119,7 @@
 		FA13D9462E6AD75200198251 /* Ultils */ = {
 			isa = PBXGroup;
 			children = (
+				FA13D94E2E6BEAE200198251 /* API */,
 				FA13D9472E6AD75900198251 /* NetworkError */,
 			);
 			path = Ultils;
@@ -130,6 +139,30 @@
 				FA13D92B2E6AD4C000198251 /* ViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FA13D94B2E6BE54600198251 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FA13D94C2E6BE55A00198251 /* Networkservices.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		FA13D94E2E6BEAE200198251 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				FA13D94F2E6BEB2100198251 /* APIConstant.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		FA13D9512E6BED1500198251 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,10 +237,13 @@
 			files = (
 				FA13D92C2E6AD4C000198251 /* ViewController.swift in Sources */,
 				FA13D9412E6AD6A200198251 /* ImageCollectionViewCell.swift in Sources */,
+				FA13D9532E6BED2E00198251 /* CollectionViewGallaryViewModel.swift in Sources */,
+				FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */,
 				FA13D9492E6AD77500198251 /* NetworkErrorHandler.swift in Sources */,
 				FA13D9282E6AD4C000198251 /* AppDelegate.swift in Sources */,
 				FA13D92A2E6AD4C000198251 /* SceneDelegate.swift in Sources */,
 				FA13D93E2E6AD66300198251 /* ImageModel.swift in Sources */,
+				FA13D94D2E6BE55A00198251 /* Networkservices.swift in Sources */,
 				FA13D9452E6AD73100198251 /* ImageServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
