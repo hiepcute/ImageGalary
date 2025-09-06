@@ -121,8 +121,12 @@ extension ViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCollectionViewCell
-        let imageModel = viewModel.images[indexPath.item]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        guard let imageModel = viewModel.images[safe: indexPath.item] else {
+            return UICollectionViewCell()
+        }
         cell.configure(with: imageModel)
         
         return cell

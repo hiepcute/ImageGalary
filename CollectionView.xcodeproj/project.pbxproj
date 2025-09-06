@@ -19,6 +19,7 @@
 		FA13D94D2E6BE55A00198251 /* Networkservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D94C2E6BE55A00198251 /* Networkservices.swift */; };
 		FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D94F2E6BEB2100198251 /* APIConstant.swift */; };
 		FA13D9532E6BED2E00198251 /* CollectionViewGallaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */; };
+		FA13D9562E6BF96100198251 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9552E6BF96100198251 /* Array+Extenstion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		FA13D94C2E6BE55A00198251 /* Networkservices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkservices.swift; sourceTree = "<group>"; };
 		FA13D94F2E6BEB2100198251 /* APIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstant.swift; sourceTree = "<group>"; };
 		FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewGallaryViewModel.swift; sourceTree = "<group>"; };
+		FA13D9552E6BF96100198251 /* Array+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		FA13D9462E6AD75200198251 /* Ultils */ = {
 			isa = PBXGroup;
 			children = (
+				FA13D9542E6BF94F00198251 /* Extenstion */,
 				FA13D94E2E6BEAE200198251 /* API */,
 				FA13D9472E6AD75900198251 /* NetworkError */,
 			);
@@ -163,6 +166,14 @@
 				FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FA13D9542E6BF94F00198251 /* Extenstion */ = {
+			isa = PBXGroup;
+			children = (
+				FA13D9552E6BF96100198251 /* Array+Extenstion.swift */,
+			);
+			path = Extenstion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,6 +252,7 @@
 				FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */,
 				FA13D9492E6AD77500198251 /* NetworkErrorHandler.swift in Sources */,
 				FA13D9282E6AD4C000198251 /* AppDelegate.swift in Sources */,
+				FA13D9562E6BF96100198251 /* Array+Extenstion.swift in Sources */,
 				FA13D92A2E6AD4C000198251 /* SceneDelegate.swift in Sources */,
 				FA13D93E2E6AD66300198251 /* ImageModel.swift in Sources */,
 				FA13D94D2E6BE55A00198251 /* Networkservices.swift in Sources */,

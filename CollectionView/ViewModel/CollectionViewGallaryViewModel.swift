@@ -55,7 +55,7 @@ class ImageViewModel {
     
     private func updateImageModel(at index: Int, isLoading: Bool, image: UIImage?) {
         guard index < images.count else { return }
-        var model = images[index]
+        let model = images[index]
         model.isLoading = isLoading
         model.image = image
         images[index] = model
