@@ -45,12 +45,11 @@ class ViewController: UIViewController {
             action: #selector(reloadAllButtonTapped)
         )
         
-        navigationItem.rightBarButtonItems = [reloadButton]
-        navigationItem.leftBarButtonItems = [addButton]
+        navigationItem.rightBarButtonItems = [reloadButton ,addButton]
     }
     
     private func bindViewModel() {
-        viewModel.$images
+        viewModel.images
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.collectionView.reloadData()
@@ -100,16 +99,16 @@ class ViewController: UIViewController {
 
     private func addNewImage() {
         viewModel.addNewImage()
-        let indexPath = IndexPath(item: viewModel.images.count - 1, section: 0)
+        let indexPath = IndexPath(item: viewModel.images.value.count - 1, section: 0)
         collectionView.insertItems(at: [indexPath])
-        viewModel.loadImage(for: indexPath)
+        viewModel.loadImage(at: indexPath)
     }
     
     
     private func loadImagesForVisibleCells() {
         let visibleIndexPaths = collectionView.indexPathsForVisibleItems
         for indexPath in visibleIndexPaths {
-            viewModel.loadImage(for: indexPath)
+            viewModel.loadImage(at: indexPath)
         }
     }
     
@@ -117,14 +116,14 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.images.count
+        return viewModel.images.value.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCollectionViewCell else {
             return UICollectionViewCell()
         }
-        guard let imageModel = viewModel.images[safe: indexPath.item] else {
+        guard let imageModel = viewModel.images.value[safe: indexPath.item] else {
             return UICollectionViewCell()
         }
         cell.configure(with: imageModel)

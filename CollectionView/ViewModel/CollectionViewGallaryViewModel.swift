@@ -10,40 +10,47 @@ import UIKit
 import Combine
 
 class ImageViewModel {
-    @Published private(set) var images: [ImageModel] = []
-    private var cancellables = Set<AnyCancellable>()
+    private(set) var images = CurrentValueSubject<[ImageModel], Never>([])
     
+    private var cancellables = Set<AnyCancellable>()
+    private let imageService: ImageServiceProtocol
     private let itemsPerPage = 70 // 7x10
     
-    init() {
+    init(imageService: ImageServiceProtocol = ImageService.shared) {
+        self.imageService = imageService
         loadInitialImages()
     }
     
     func loadInitialImages() {
-        images = (0..<itemsPerPage).map { _ in ImageModel() }
+        // images = (0..<itemsPerPage).map { _ in ImageModel() }
+        images.send((0..<itemsPerPage).map { _ in ImageModel() })
     }
     
     func addNewImage() {
-        images.append(ImageModel())
+        var current = images.value
+        current.append(ImageModel())
+        images.send(current)
     }
+
     
     func reloadAllImages() {
-        ImageService.shared.resetCache()
-        images = (0..<140).map { _ in ImageModel() }
-    }
+            imageService.resetCache()
+            images.send((0..<140).map { _ in ImageModel() })
+        }
     
-    func loadImage(for indexPath: IndexPath) {
-        guard indexPath.item < images.count else { return }
+    func loadImage(at indexPath: IndexPath) {
+        var current = images.value
+        guard indexPath.item < current.count else { return }
         
-        let imageModel = images[indexPath.item]
+        let imageModel = current[indexPath.item]
         guard !imageModel.isLoading && imageModel.image == nil else { return }
         
         imageModel.isLoading = true
-        images[indexPath.item] = imageModel  // update state
-        
+        current[indexPath.item] = imageModel  // update state
+        images.send(current)
         Task {
             do {
-                let image = try await ImageService.shared.fetchRandomImage()
+                let image = try await imageService.fetchRandomImage(useCache: true)
                 updateImageModel(at: indexPath.item, isLoading: false, image: image)
             } catch {
                 updateImageModel(at: indexPath.item, isLoading: false, image: UIImage(systemName: "photo"))
@@ -54,17 +61,21 @@ class ImageViewModel {
     }
     
     private func updateImageModel(at index: Int, isLoading: Bool, image: UIImage?) {
-        guard index < images.count else { return }
-        let model = images[index]
+        var current = images.value
+        guard index < current.count else { return }
+        let model = current[index]
         model.isLoading = isLoading
         model.image = image
-        images[index] = model
+        current[index] = model
+        images.send(current)
     }
     
     func willDisplayItem(at indexPath: IndexPath) {
-        let imageModel = images[indexPath.item]
+        let current = images.value
+        let imageModel = current[indexPath.item]
         if imageModel.image == nil && !imageModel.isLoading {
-            loadImage(for: indexPath)
+            loadImage(at: indexPath)
         }
     }
+    
 }
