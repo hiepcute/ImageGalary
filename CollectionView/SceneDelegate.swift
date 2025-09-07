@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
             
             window = UIWindow(windowScene: windowScene)
-            let viewController = ViewController()
+            let viewController = CollectionViewGallaryViewController()
             let navigationController = UINavigationController(rootViewController: viewController)
             
             // Ensure navigation bar is visible and styled

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import Combine
 
-class ImageViewModel {
+class CollectionViewGallaryViewModel {
     private(set) var images = CurrentValueSubject<[ImageModel], Never>([])
     
     private var cancellables = Set<AnyCancellable>()
@@ -22,7 +22,6 @@ class ImageViewModel {
     }
     
     func loadInitialImages() {
-        // images = (0..<itemsPerPage).map { _ in ImageModel() }
         images.send((0..<itemsPerPage).map { _ in ImageModel() })
     }
     
@@ -31,12 +30,12 @@ class ImageViewModel {
         current.append(ImageModel())
         images.send(current)
     }
-
+    
     
     func reloadAllImages() {
-            imageService.resetCache()
-            images.send((0..<140).map { _ in ImageModel() })
-        }
+        imageService.resetCache()
+        images.send((0..<140).map { _ in ImageModel() })
+    }
     
     func loadImage(at indexPath: IndexPath) {
         var current = images.value
@@ -54,10 +53,8 @@ class ImageViewModel {
                 updateImageModel(at: indexPath.item, isLoading: false, image: image)
             } catch {
                 updateImageModel(at: indexPath.item, isLoading: false, image: UIImage(systemName: "photo"))
-
             }
         }
-
     }
     
     private func updateImageModel(at index: Int, isLoading: Bool, image: UIImage?) {

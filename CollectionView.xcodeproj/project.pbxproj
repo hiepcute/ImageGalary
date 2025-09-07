@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA13D9282E6AD4C000198251 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9272E6AD4C000198251 /* AppDelegate.swift */; };
 		FA13D92A2E6AD4C000198251 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9292E6AD4C000198251 /* SceneDelegate.swift */; };
-		FA13D92C2E6AD4C000198251 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D92B2E6AD4C000198251 /* ViewController.swift */; };
+		FA13D92C2E6AD4C000198251 /* CollectionViewGallaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D92B2E6AD4C000198251 /* CollectionViewGallaryViewController.swift */; };
 		FA13D9312E6AD4C300198251 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA13D9302E6AD4C300198251 /* Assets.xcassets */; };
 		FA13D9342E6AD4C300198251 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = FA13D9332E6AD4C300198251 /* Base */; };
 		FA13D93E2E6AD66300198251 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D93D2E6AD66300198251 /* ImageModel.swift */; };
@@ -20,13 +20,26 @@
 		FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D94F2E6BEB2100198251 /* APIConstant.swift */; };
 		FA13D9532E6BED2E00198251 /* CollectionViewGallaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */; };
 		FA13D9562E6BF96100198251 /* Array+Extenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D9552E6BF96100198251 /* Array+Extenstion.swift */; };
+		FA13D9602E6C48C700198251 /* CollectionViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA13D95F2E6C48C700198251 /* CollectionViewTests.swift */; };
+		FA9D25752E6DBA2B00C7446E /* CollectionViewGallaryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D25742E6DBA2B00C7446E /* CollectionViewGallaryViewModelTests.swift */; };
+		FA9D25792E6DBB8D00C7446E /* MockImageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9D25782E6DBB8D00C7446E /* MockImageServices.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA13D9612E6C48C700198251 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA13D91C2E6AD4C000198251 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA13D9232E6AD4C000198251;
+			remoteInfo = CollectionView;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		FA13D9242E6AD4C000198251 /* CollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA13D9272E6AD4C000198251 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA13D9292E6AD4C000198251 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FA13D92B2E6AD4C000198251 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA13D92B2E6AD4C000198251 /* CollectionViewGallaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewGallaryViewController.swift; sourceTree = "<group>"; };
 		FA13D9302E6AD4C300198251 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA13D9332E6AD4C300198251 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA13D9352E6AD4C300198251 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,10 +51,21 @@
 		FA13D94F2E6BEB2100198251 /* APIConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstant.swift; sourceTree = "<group>"; };
 		FA13D9522E6BED2E00198251 /* CollectionViewGallaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewGallaryViewModel.swift; sourceTree = "<group>"; };
 		FA13D9552E6BF96100198251 /* Array+Extenstion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extenstion.swift"; sourceTree = "<group>"; };
+		FA13D95D2E6C48C700198251 /* CollectionViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CollectionViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA13D95F2E6C48C700198251 /* CollectionViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTests.swift; sourceTree = "<group>"; };
+		FA9D25742E6DBA2B00C7446E /* CollectionViewGallaryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewGallaryViewModelTests.swift; sourceTree = "<group>"; };
+		FA9D25782E6DBB8D00C7446E /* MockImageServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FA13D9212E6AD4C000198251 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA13D95A2E6C48C700198251 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -55,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				FA13D9262E6AD4C000198251 /* CollectionView */,
+				FA13D95E2E6C48C700198251 /* CollectionViewTests */,
 				FA13D9252E6AD4C000198251 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				FA13D9242E6AD4C000198251 /* CollectionView.app */,
+				FA13D95D2E6C48C700198251 /* CollectionViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,7 +165,7 @@
 		FA13D94A2E6AD78D00198251 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FA13D92B2E6AD4C000198251 /* ViewController.swift */,
+				FA13D92B2E6AD4C000198251 /* CollectionViewGallaryViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +202,40 @@
 			path = Extenstion;
 			sourceTree = "<group>";
 		};
+		FA13D95E2E6C48C700198251 /* CollectionViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D25762E6DBA3800C7446E /* Helper */,
+				FA9D25732E6DB97E00C7446E /* ViewModel */,
+				FA13D95F2E6C48C700198251 /* CollectionViewTests.swift */,
+			);
+			path = CollectionViewTests;
+			sourceTree = "<group>";
+		};
+		FA9D25732E6DB97E00C7446E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D25742E6DBA2B00C7446E /* CollectionViewGallaryViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		FA9D25762E6DBA3800C7446E /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D25772E6DBA3E00C7446E /* Mock */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		FA9D25772E6DBA3E00C7446E /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D25782E6DBB8D00C7446E /* MockImageServices.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,6 +256,24 @@
 			productReference = FA13D9242E6AD4C000198251 /* CollectionView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FA13D95C2E6C48C700198251 /* CollectionViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA13D9632E6C48C700198251 /* Build configuration list for PBXNativeTarget "CollectionViewTests" */;
+			buildPhases = (
+				FA13D9592E6C48C700198251 /* Sources */,
+				FA13D95A2E6C48C700198251 /* Frameworks */,
+				FA13D95B2E6C48C700198251 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA13D9622E6C48C700198251 /* PBXTargetDependency */,
+			);
+			name = CollectionViewTests;
+			productName = CollectionViewTests;
+			productReference = FA13D95D2E6C48C700198251 /* CollectionViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +286,10 @@
 				TargetAttributes = {
 					FA13D9232E6AD4C000198251 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					FA13D95C2E6C48C700198251 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = FA13D9232E6AD4C000198251;
 					};
 				};
 			};
@@ -225,6 +307,7 @@
 			projectRoot = "";
 			targets = (
 				FA13D9232E6AD4C000198251 /* CollectionView */,
+				FA13D95C2E6C48C700198251 /* CollectionViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -239,6 +322,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA13D95B2E6C48C700198251 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -246,7 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA13D92C2E6AD4C000198251 /* ViewController.swift in Sources */,
+				FA13D92C2E6AD4C000198251 /* CollectionViewGallaryViewController.swift in Sources */,
 				FA13D9412E6AD6A200198251 /* ImageCollectionViewCell.swift in Sources */,
 				FA13D9532E6BED2E00198251 /* CollectionViewGallaryViewModel.swift in Sources */,
 				FA13D9502E6BEB2100198251 /* APIConstant.swift in Sources */,
@@ -260,7 +350,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA13D9592E6C48C700198251 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA9D25792E6DBB8D00C7446E /* MockImageServices.swift in Sources */,
+				FA9D25752E6DBA2B00C7446E /* CollectionViewGallaryViewModelTests.swift in Sources */,
+				FA13D9602E6C48C700198251 /* CollectionViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA13D9622E6C48C700198251 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA13D9232E6AD4C000198251 /* CollectionView */;
+			targetProxy = FA13D9612E6C48C700198251 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FA13D9322E6AD4C300198251 /* LaunchScreen.storyboard */ = {
@@ -457,6 +565,44 @@
 			};
 			name = Release;
 		};
+		FA13D9642E6C48C700198251 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6P22AL64F3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hiep.CollectionViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CollectionView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CollectionView";
+			};
+			name = Debug;
+		};
+		FA13D9652E6C48C700198251 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6P22AL64F3;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = hiep.CollectionViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CollectionView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CollectionView";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -474,6 +620,15 @@
 			buildConfigurations = (
 				FA13D9392E6AD4C300198251 /* Debug */,
 				FA13D93A2E6AD4C300198251 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA13D9632E6C48C700198251 /* Build configuration list for PBXNativeTarget "CollectionViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA13D9642E6C48C700198251 /* Debug */,
+				FA13D9652E6C48C700198251 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

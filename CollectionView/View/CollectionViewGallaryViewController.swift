@@ -8,14 +8,14 @@
 import UIKit
 import Combine
 
-class ViewController: UIViewController {
+class CollectionViewGallaryViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var images: [ImageModel] = []
     private let itemsPerPage = 70 // 7x10
     private let columnsPerRow = 7
     private let rowsPerPage = 10
-    private var viewModel = ImageViewModel()
+    private var viewModel = CollectionViewGallaryViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension CollectionViewGallaryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.images.value.count
     }
@@ -137,7 +137,7 @@ extension ViewController: UICollectionViewDataSource {
 }
 
 
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension CollectionViewGallaryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let availableWidth = collectionView.frame.width
         let spacingBetweenItems: CGFloat = 2
@@ -157,7 +157,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - UIScrollViewDelegate
-extension ViewController: UIScrollViewDelegate {
+extension CollectionViewGallaryViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         loadImagesForVisibleCells()
     }
