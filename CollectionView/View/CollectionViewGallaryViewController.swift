@@ -10,12 +10,12 @@ import Combine
 
 class CollectionViewGallaryViewController: UIViewController {
     
-    private var collectionView: UICollectionView!
+    var collectionView: UICollectionView!
     private var images: [ImageModel] = []
     private let itemsPerPage = 70 // 7x10
     private let columnsPerRow = 7
     private let rowsPerPage = 10
-    private var viewModel = CollectionViewGallaryViewModel()
+    var viewModel = CollectionViewGallaryViewModel()
     private var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
@@ -87,11 +87,11 @@ class CollectionViewGallaryViewController: UIViewController {
         ])
     }
     
-    @objc private func addButtonTapped() {
+    @objc func addButtonTapped() {
         addNewImage()
     }
     
-    @objc private func reloadAllButtonTapped() {
+    @objc  func reloadAllButtonTapped() {
         viewModel.reloadAllImages()
         collectionView.setContentOffset(.zero, animated: true)
     }
